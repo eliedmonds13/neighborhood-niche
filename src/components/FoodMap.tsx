@@ -16,12 +16,12 @@ export const FoodMap = () => {
   const [selectedSpot, setSelectedSpot] = useState<FoodSpot | null>(null);
 
   return (
-    <APIProvider apiKey="AIzaSyCpLB1WG_MFo6d1Fwu1Og5Ah0u_bIJpzL8">
+    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <div style={{ height: '100vh', width: '100%' }}>
         <Map
           defaultCenter={{ lat: 40.731, lng: -73.998 }}
           defaultZoom={15}
-          mapId="ddcf16111c5a8415405369dc" // Required for emoji markers
+          mapId="5ce8220699891c25a3e99422" // Custom map ID - NeighborhoodNicheStyle1
           options={mapOptions}
         >
           {myFavoriteSpots.map((spot) => (
