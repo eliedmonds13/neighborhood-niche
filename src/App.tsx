@@ -44,7 +44,7 @@ const FEATURED = [
     id: 2,
     spotId: '2',
     name: 'Pizzazz',
-    tag: 'Must Try',
+    tag: 'Personal Pies',
     description:
       'Personal sized neopolitan pizzas to go. Every pizza is made from scratch and cooked right when you order. Pizzazz combines fresh ingredients, amazing flavor, and a warm sense of hospitality that makes every customer feel like a regular by their second visit.',
     emoji: '🍕',
@@ -331,7 +331,7 @@ export default function App() {
                   fontFamily: T.fontDisplay,
                   fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.4rem)',
                   fontWeight: 400,
-                }}>Our Favorites</h2>
+                }}>Our Top Three</h2>
               </div>
               <button className="btn-outline" onClick={() => navigate('map')}>
                 See all spots <span>→</span>
@@ -454,8 +454,8 @@ export default function App() {
               </h2>
               <div style={{ fontSize: '0.81rem', lineHeight: 1.9, color: T.inkLight }}>
                 <p>We're Eli Edmonds and Emmett Cohen, seniors at Friends Seminary in the Class of 2026. We both love food, and have spent high school searching for new places to try on the days we venture out of the cafeteria for lunch.</p>
-                <p style={{ marginTop: 14 }}>For Eli, it all started with a tiny window deli on 14th Street selling $3 empanadas. It quickly became a regular lunch spot and sparked a curiosity about the other overlooked neighborhood spots hidden just blocks from school. For Emmett, it was his first visit to Pizzazz, a local pizza shop where the owner welcomed him with an unusual warmth and generosity. He immediately wanted to learn the story behind the business and find others like it.</p>
-                <p style={{ marginTop: 14 }}>We shared our finds with each other and realized how many great spots Friends students were missing. We hope this map is useful to every Friends student who comes after us, and that it inspires others to look beyond the chains to the people and places that make the neighborhood special.</p>              
+                <p style={{ marginTop: 14 }}>For Eli, it all started with a tiny window deli on 14th Street selling $3 empanadas. It quickly became a regular lunch spot and sparked a curiosity about the other overlooked neighborhood spots hidden just blocks from school. For Emmett, the inspiration came from his first visit to Pizzazz, a local pizza shop where the owner welcomed him with an unusual warmth and generosity. He immediately wanted to learn the story behind the business and find others like it.</p>
+                <p style={{ marginTop: 14 }}>We shared our finds with each other and realized how many great spots Friends students were missing out on. We hope this map is useful to every Friends student who comes after us, and that it inspires others to look beyond the chains to the people and places that make the neighborhood special.</p>              
               </div>
 
               <div style={{ marginTop: 32 }}>
@@ -496,7 +496,7 @@ export default function App() {
                 transition: 'color 0.2s, border-color 0.2s',
               }}
             >
-              GitHub ↗
+              GitHub Repository ↗
             </a>
           </footer>
         </div>
