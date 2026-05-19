@@ -4,11 +4,11 @@
 
 Neighborhood Niche is a senior project by Eli Edmonds and Emmett Cohen (Friends Seminary '26). Over four weeks, we walked the blocks around our school and ate our way through the neighborhood, searching for independent, locally owned businesses within walking distance of Friends that serve great food at student-friendly prices!
 
-**View The Map**
-![Here](/RM_MapPreview.png)
+**Preview The Map**
+![Here](/public/RM_MapPreview.png)
 
-**Access**
-Go to [neighborhoodniche.org](url) to view the website.
+**Access the Website**
+Go to [neighborhoodniche.org](https://neighborhoodniche.org) to view the website and map.
 
 **Usage**
 Navigate the map by dragging with the cursor. Click on a pin drop to learn more about that restaurant!
