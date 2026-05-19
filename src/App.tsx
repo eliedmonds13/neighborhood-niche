@@ -4,6 +4,7 @@ import logo from './assets/logo.png';
 import nishaan from './assets/nishaanhighlight.jpeg';
 import pizzazz from './assets/pizzazzhighlight.jpg';
 import miniGourmet from './assets/minigourmethighlight.jpg';
+import aboutPhoto from './assets/aboutphoto.jpg';
 
 type Page = 'home' | 'map';
 
@@ -27,11 +28,10 @@ function useWindowWidth() {
   return w;
 }
 
-// spot IDs must match the id field in spots.ts
 const FEATURED = [
   {
     id: 1,
-    spotId: '1', // matches id in spots.ts for Nishaan
+    spotId: '1',
     name: 'Nishaan',
     tag: 'Pakistani Chopped Cheese',
     description:
@@ -42,7 +42,7 @@ const FEATURED = [
   },
   {
     id: 2,
-    spotId: '2', // matches id in spots.ts for Pizzazz
+    spotId: '2',
     name: 'Pizzazz',
     tag: 'Must Try',
     description:
@@ -53,7 +53,7 @@ const FEATURED = [
   },
   {
     id: 3,
-    spotId: '3', // matches id in spots.ts for Mini Gourmet
+    spotId: '3',
     name: 'Mini Gourmet Deli',
     tag: 'The OG',
     description:
@@ -164,25 +164,16 @@ export default function App() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: `${sm ? 14 : 18}px ${sm ? 20 : 36}px`,
-        // Opaque background pill that appears on scroll or map page
-        background: scrolled || page === 'map'
-          ? T.cream
-          : 'transparent',
-        borderBottom: scrolled || page === 'map'
-          ? `1px solid ${T.rule}`
-          : '1px solid transparent',
+        background: scrolled || page === 'map' ? T.cream : 'transparent',
+        borderBottom: scrolled || page === 'map' ? `1px solid ${T.rule}` : '1px solid transparent',
         transition: 'background 0.3s, border-color 0.3s',
       }}>
-        {/* Left: logo on map, wordmark on home when scrolled */}
         {page === 'map' ? (
           <img
             src={logo}
             alt="Home"
             onClick={() => navigate('home')}
-            style={{
-              height: 60, cursor: 'pointer',
-              opacity: 1, transition: 'opacity 0.2s',
-            }}
+            style={{ height: 60, cursor: 'pointer', opacity: 1, transition: 'opacity 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.opacity = '0.7')}
             onMouseOut={e => (e.currentTarget.style.opacity = '1')}
           />
@@ -192,15 +183,13 @@ export default function App() {
             style={{
               fontFamily: T.fontMono, fontSize: '0.62rem', letterSpacing: '0.2em',
               textTransform: 'uppercase', color: T.ink, cursor: 'pointer',
-              opacity: scrolled ? 1 : 0,
-              transition: 'opacity 0.35s',
+              opacity: scrolled ? 1 : 0, transition: 'opacity 0.35s',
               pointerEvents: scrolled ? 'auto' : 'none',
             }}
           >
             Neighborhood Niche
           </span>
         )}
-
         <button
           className={`hamburger${menuOpen ? ' open' : ''}`}
           style={{ position: 'relative', zIndex: 201 }}
@@ -244,14 +233,12 @@ export default function App() {
             background: `radial-gradient(ellipse at 50% 55%, rgba(201,71,43,0.07) 0%, transparent 65%)`,
           }}>
             <p className="anim-1" style={{
-              fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+              fontSize: '0.7rem', letterSpacing: '0.25em', textTransform: 'uppercase',
               color: T.inkLight, marginBottom: 32, textAlign: 'center',
             }}>
               Friends Seminary · Union Square · Est. 2026
             </p>
-            <img className="anim-2" src={logo} alt="Neighborhood Niche" style={{
-              width: sm ? 110 : 180, marginBottom: 28,
-            }} />
+            <img className="anim-2" src={logo} alt="Neighborhood Niche" style={{ width: sm ? 110 : 180, marginBottom: 28 }} />
             <h1 className="anim-3" style={{
               fontFamily: T.fontDisplay,
               fontSize: sm ? 'clamp(1.9rem, 9vw, 2.8rem)' : 'clamp(2.8rem, 5.5vw, 5rem)',
@@ -261,10 +248,10 @@ export default function App() {
               The Neighborhood Niche
             </h1>
             <p className="anim-4" style={{
-              marginTop: 16, fontSize: '0.68rem', letterSpacing: '0.15em',
+              marginTop: 16, fontSize: '0.72rem', letterSpacing: '0.15em',
               textTransform: 'uppercase', color: T.inkLight, textAlign: 'center',
             }}>
-              An interactive guide to Gramercy community & cuisine
+              Independent food. Student prices. Right around the corner of Friends.
             </p>
             <div className="anim-5" style={{ marginTop: 44 }}>
               <button className="btn-primary" onClick={() => navigate('map')}>
@@ -273,7 +260,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* About */}
+          {/* About the Project */}
           <section style={{
             display: 'grid',
             gridTemplateColumns: sm ? '1fr' : '1fr 1fr',
@@ -281,7 +268,7 @@ export default function App() {
           }}>
             <div style={{ padding: `${py} ${px}` }}>
               <p style={{
-                fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+                fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase',
                 color: T.inkLight, marginBottom: 18,
               }}>About the project</p>
               <h2 style={{
@@ -289,12 +276,12 @@ export default function App() {
                 fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
                 fontWeight: 400, lineHeight: 1.2, marginBottom: 28,
               }}>
-                Beyond the chain.<br />Inside the neighborhood.
+                Eat local, spend local.
               </h2>
               <div style={{ fontSize: '0.81rem', lineHeight: 1.9, color: T.inkLight }}>
-                <p>Neighborhood Niche is a senior project by Emmett Cohen and Eli Edmonds, 12th graders at Friends Seminary. We set out to map the independent food spots and local businesses that make our block worth knowing.</p>
-                <p style={{ marginTop: 14 }}>Every entry includes photography, a menu recommendation under $15, and a deeper look — owner interviews, oral histories, or the cultural story behind the food.</p>
-                <p style={{ marginTop: 14 }}>This map is for every Friends student who wants to explore their neighborhood, eat well, and spend their money on people who actually live and work here.</p>
+                <p>Neighborhood Niche is a senior project by Eli Edmonds and Emmett Cohen (Friends Seminary '26). Over four weeks, we walked the blocks around our school and ate our way through the neighborhood, searching for independent, locally owned businesses within walking distance of Friends that serve great food at student-friendly prices.</p>
+                <p style={{ marginTop: 14 }}>Lunch in New York can get expensive fast. But eating affordably should not have to mean settling for the same chains every day. The neighborhood around Friends is full of incredible food, remarkable people, and small businesses with stories worth knowing. You just have to know where to look.</p>
+                <p style={{ marginTop: 14 }}>The goal of this project is to help Friends students discover those places. Every spot on this map was chosen not just for the food, but for the people behind it: the owners, families, and communities that make our neighborhood feel alive. Our hope is that this interactive guide encourages students to explore more of the city around them and support the local businesses that give it character.</p>
               </div>
             </div>
 
@@ -306,13 +293,14 @@ export default function App() {
             }}>
               <div>
                 {[
-                  { n: '15', label: 'Local spots featured' },
-                  { n: '$15', label: 'Maximum price per entry' },
+                  { n: '14', label: 'Local spots featured' },
+                  { n: '0.5 mi', label: 'Maximum distance from Friends' },
+                  { n: '$15', label: 'Maximum price' },
                   { n: '100%', label: 'Independent businesses' },
                 ].map(({ n, label }) => (
                   <div key={label} style={{ padding: '22px 0', borderBottom: `1px solid ${T.rule}` }}>
                     <div style={{
-                      fontFamily: T.fontDisplay, fontSize: '2.8rem',
+                      fontFamily: T.fontDisplay, fontSize: '3.4rem',
                       fontWeight: 400, color: T.accent, lineHeight: 1,
                     }}>{n}</div>
                     <div style={{
@@ -336,14 +324,14 @@ export default function App() {
             }}>
               <div>
                 <p style={{
-                  fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+                  fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase',
                   color: T.inkLight, marginBottom: 10,
                 }}>Must try</p>
                 <h2 style={{
                   fontFamily: T.fontDisplay,
                   fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.4rem)',
                   fontWeight: 400,
-                }}>Our three favorites</h2>
+                }}>Our Favorites</h2>
               </div>
               <button className="btn-outline" onClick={() => navigate('map')}>
                 See all spots <span>→</span>
@@ -381,7 +369,6 @@ export default function App() {
                       <span className="spot-img" style={{ fontSize: '4rem' }}>{spot.emoji}</span>
                     )}
                   </div>
-
                   <div style={{ padding: '22px 26px 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{
                       display: 'flex', justifyContent: 'space-between',
@@ -412,14 +399,80 @@ export default function App() {
             </div>
           </section>
 
+          {/* About Us */}
+          <section style={{
+            display: 'grid',
+            gridTemplateColumns: sm ? '1fr' : '1fr 1fr',
+            borderBottom: `1px solid ${T.rule}`,
+          }}>
+            {/* Left: photo */}
+            <div style={{
+              padding: `${py} ${px}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <div style={{
+                width: sm ? 260 : 338,
+                height: sm ? 260 : 338,
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: `1px solid ${T.rule}`,
+                background: '#e8e4dc',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <img
+                  src={aboutPhoto}
+                  alt="Emmett and Eli"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            </div>
+
+            {/* Right: text */}
+            <div style={{
+              borderLeft: sm ? 'none' : `1px solid ${T.rule}`,
+              borderTop: sm ? `1px solid ${T.rule}` : 'none',
+              padding: `${py} ${px}`,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}>
+              <p style={{
+                fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase',
+                color: T.inkLight, marginBottom: 18,
+              }}>About us</p>
+              <h2 style={{
+                fontFamily: T.fontDisplay,
+                fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
+                fontWeight: 400, lineHeight: 1.2, marginBottom: 28,
+              }}>
+                Emmett & Eli
+              </h2>
+              <div style={{ fontSize: '0.81rem', lineHeight: 1.9, color: T.inkLight }}>
+                <p>We're Eli Edmonds and Emmett Cohen, seniors at Friends Seminary in the Class of 2026. We both love food, and have spent high school searching for new places to try on the days we venture out of the cafeteria for lunch.</p>
+                <p style={{ marginTop: 14 }}>For Eli, it all started with a tiny window deli on 14th Street selling $3 empanadas. It quickly became a regular lunch spot and sparked a curiosity about the other overlooked neighborhood spots hidden just blocks from school. For Emmett, it was his first visit to Pizzazz, a local pizza shop where the owner welcomed him with an unusual warmth and generosity. He immediately wanted to learn the story behind the business and find others like it.</p>
+                <p style={{ marginTop: 14 }}>We shared our finds with each other and realized how many great spots Friends students were missing. We hope this map is useful to every Friends student who comes after us, and that it inspires others to look beyond the chains to the people and places that make the neighborhood special.</p>              
+              </div>
+
+              <div style={{ marginTop: 32 }}>
+                <button className="btn-primary" onClick={() => navigate('map')}>
+                  View the Map <span>→</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
           {/* Footer */}
           <footer style={{
+            position: 'relative',
             padding: sm ? '28px 24px' : '36px 80px',
             display: 'flex',
-            flexDirection: sm ? 'column' : 'row',
             justifyContent: 'space-between',
-            alignItems: sm ? 'flex-start' : 'center',
-            gap: 16,
+            alignItems: 'center',
             fontSize: '0.57rem',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
@@ -427,24 +480,20 @@ export default function App() {
             borderTop: `1px solid ${T.rule}`,
           }}>
             <span>Neighborhood Niche © 2026</span>
-            <span>Emmett Cohen & Eli Edmonds · Friends Seminary</span>
+            <span style={{
+              position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+              whiteSpace: 'nowrap',
+            }}>
+              Emmett Cohen & Eli Edmonds · Friends Seminary
+            </span>
             <a
               href="https://github.com/eliedmonds13/neighborhood-niche"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 color: T.inkLight, textDecoration: 'none',
-                borderBottom: `1px solid ${T.inkLight}`,
-                paddingBottom: 1,
+                borderBottom: `1px solid ${T.inkLight}`, paddingBottom: 1,
                 transition: 'color 0.2s, border-color 0.2s',
-              }}
-              onMouseOver={e => {
-                (e.currentTarget as HTMLElement).style.color = T.ink;
-                (e.currentTarget as HTMLElement).style.borderColor = T.ink;
-              }}
-              onMouseOut={e => {
-                (e.currentTarget as HTMLElement).style.color = T.rule;
-                (e.currentTarget as HTMLElement).style.borderColor = T.rule;
               }}
             >
               GitHub ↗
