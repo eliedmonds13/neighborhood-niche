@@ -83,7 +83,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Smashy',
     address: '42 Union Square East',
     priceRange: '$5-10',
-    recommendation: 'Double House Cheeseburger ($6.99 + tax)',
+    recommendation: 'Double House Cheeseburger',
     reason: 'While there are smashburgers abound in the Union Square area, we have concluded that the greatest of them all is found at Smashy. This is one of the cheapest full-size smashburgers around, without sacrificing any flavor. Their house sauce is a must, and adds a delicious, tangy touch to the burger. Their buns are not over-greased, as smashburgers can sometimes be, and their thin fries are the perfect side, thanks to the clear instructions on the wall for employees on how to make the perfect fry. Smashy is close enough and quick enough to be a collab grab-and-go snack. Make sure to wave through the portal on the wall to the people in their Budapest location. Maybe you\'ll even make a new friend!',
     photos: [
       '/Smashy/Smashy1.jpg',
@@ -99,7 +99,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Loong Noodles',
     address: '28 St Marks Pl',
     priceRange: '$10-15',
-    recommendation: 'Beef Noodle Soup ($13 + tax)',
+    recommendation: 'Beef Noodle Soup',
     reason: 'Looking for a tasty and affordable bowl of noodles? Well, we\'ve got what you\'ve been loong-ing for! Located on St. Mark\'s Place, Loong Noodles has some of the best noodles around. We got the Taiwanese-style beef noodle soup, and it was absolutely superb. The star of the show was the braised beef shank: it was tender and juicy so that it melts in your mouth, and it had soaked in the delicious flavor of the broth, which was tangy and aromatic with a slight kick to it. We went for the mild spice level and thought it was the perfect amount. We also ordered the scallion pancakes, which had scrambled egg folded into them. The restaurant itself had a bright, lively interior perfect for sitting down and enjoying your hot noodles, but they also offered takeout. Any Kendrick Lamar fan will certainly enjoy the music there. Try it out, you won\'t regret it.',
     photos: [
       '/Loong/Loong1.JPG',
@@ -147,7 +147,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Jo\'s Taco',
     address: '226 E 14th St',
     priceRange: '$11-16',
-    recommendation: 'Birria Tacos ($11 + tax for 2)',
+    recommendation: 'Birria Tacos',
     reason: '14th Street is packed with little hole-in-the-wall gems, and one of those is our new go-to taco spot: Jo\'s Taco. We got an order of the birria tacos which were juicy and packed with flavor, especially after dipping them in the complementary birria broth, as well as the carne asada tacos, which we also enjoyed. We were also surprised by how nice the plating was for such a small establishment. While many Friends students still miss Tacombi\'s Taco Tuesday specials, we are sure that Jo\'s will fill that want. The 2 for $11 deal and short walk from Friends is hard to beat!',
     photos: [
       '/Jos/Jo1.JPG',
@@ -166,7 +166,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Rainbow Falafel',
     address: '26 E 17th St',
     priceRange: '$7-12',
-    recommendation: 'Falafel Sandwich ($7.25 + tax)',
+    recommendation: 'Falafel Sandwich',
     reason: 'Upon starting this project, we were bombarded by recommendations for Rainbow Falafel (shout-out to Neil Desai and Eli\'s dad!) After our first visit, we understood why. We don\'t think it\'s an exaggeration to say that this is the best falafel in the city. Soft, perfectly-spiced, with tangy sauce to balance it out, this falafel is unmatched. It did start to fall apart, becoming a little hard to eat in sandwich form, so next time we might go for the platter instead. The shawarma left a little to be desired, but we can forgive that based solely on how good the falafel was. We highly recommend taking a trip across Union Square to try this New York institution.',
     photos: [
       '/RainbowFalafel/rainbow.jpg',
@@ -216,7 +216,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Whits',
     address: '34 St Marks Pl',
     priceRange: '$4-9',
-    recommendation: 'Ripper Hotdog ($5.99 + tax)',
+    recommendation: 'Ripper Hotdog',
     reason: 'Looking for an authentic and affordable hotdog/burger joint? Look no further than one of our new favorites: Whits. With cheese sliders for $4.50 and hotdogs for $6, this locally owned business lives by the motto displayed on their menu: <em>Inflation\'s a b****</em>. Everything they serve is tender, juicy, and packed with flavor, well worth the low price and short walk from school. Unfortunately, since it\'s a relatively small operation, their hours are pretty dependent on when the owner can be there, so check the hours on Google Maps. Friends students looking for a quick lunch that won\'t break the bank will be able to enjoy Whits on Thursday or Fridays for lunch.',
     photos: [
       '/Whits/Whits1.jpg',
@@ -232,7 +232,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     name: 'Pastasole',
     address: '192 1st Ave',
     priceRange: '$10-15',
-    recommendation: 'Lunch Special with Pomodoro Sauce ($13.90 + tax)',
+    recommendation: 'Lunch Special with Pomodoro Sauce',
     reason: 'Located on 1st Ave between 11th and 12th St, Pastasole is our new go-to pasta spot for lunch. Their lunch special (12-3 pm) includes a bowl of fettuccine in a creamy alfredo sauce, one additional sauce, and a soda. We got ours with pomodoro and pesto, and slightly preferred the pomodoro. The fettuccini is cooked homemade to order, and is tossed in the giant pecorino romano wheel perched in the window. The pasta was cooked to a perfect al dente, and the sauce was creamy and light, the perfect mid-day lunch. They also offer a wide range of appetizers, such as garlic bread, meatballs, mini calzones, and you can add shrimp, chicken, meatballs, lobster, or burrata to any pasta bowl. Pastasole is a must-try for any pasta lover.',
     photos: [
       '/Pastasole/Pasta1.jpg',
