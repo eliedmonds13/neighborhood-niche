@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useState, useEffect, useRef } from 'react';
 import { FoodMap } from './components/FoodMap';
 import logo from './assets/logo.png';
@@ -281,7 +282,7 @@ export default function App() {
               <div style={{ fontSize: '0.81rem', lineHeight: 1.9, color: T.inkLight }}>
                 <p>Neighborhood Niche is a senior project by Eli Edmonds and Emmett Cohen (Friends Seminary '26). Over four weeks, we walked the blocks around our school and ate our way through the neighborhood, searching for independent, locally owned businesses within walking distance of Friends that serve great food at student-friendly prices.</p>
                 <p style={{ marginTop: 14 }}>Lunch in New York can get expensive fast. But eating affordably should not have to mean settling for the same chains every day. The neighborhood around Friends is full of incredible food, remarkable people, and small businesses with stories worth knowing. You just have to know where to look.</p>
-                <p style={{ marginTop: 14 }}>The goal of this project is to help Friends students discover those places. Every spot on this map was chosen not just for the food, but for the people behind it: the owners, families, and communities that make our neighborhood feel alive. Our hope is that this interactive guide encourages students to explore more of the city around them and support the local businesses that give it character.</p>
+                <p style={{ marginTop: 14 }}>The goal of this project is to help the Friends community discover those places. Every spot on this map was chosen not just for the food, but for the people behind it: the owners, families, and communities that make our neighborhood feel alive. Our hope is that this interactive guide encourages students to explore more of the city around them and support the local businesses that give it character.</p>
               </div>
             </div>
 

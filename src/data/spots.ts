@@ -37,7 +37,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Nishaan/Nishaan4.jpg',
       '/Nishaan/Nishaan5.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/Rp_kCdCj8Ng',
     emoji: '🇵🇰',
     position: { lat: 40.72849298137547, lng: -73.98440293426675 }
   },
@@ -47,7 +47,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     address: '38 Union Square East',
     priceRange: '$12-16',
     recommendation: 'Sweet & Spicy Pizza',
-    reason: 'Tired of Joe\'s Pizza? Pizzazz blows it out of the water. Their unique business model involves fresh Neopolitan-style personal pizzas, made to order from scratch every time. Zoran, the owner, believes that great pizza starts with great dough, and let us tell you, the dough is certainly the heart of his pizza. The dough, along with fresh ingredients makes this pizza like no other. We loved the sweet and spicy pizza, which has thinly-sliced salami, ricotta, and Calabrian hot honey, which come together for the perfect bite. But the margarita is also an all-time classic and allows you to taste the delicious foundation for any of their pizzas: the perfect dough, flavorful sauce, and fresh mozzarella. However, the food isn\'t the only thing that makes Pizzazz stand out. Zoran\'s hospitality-first approach drives his business forward, and on Emmett\'s first time there, Zoran made him and his friends instantly feel at home, striking up a conversation and even baking them a fresh dessert on the house. Zoran cares deeply for his customers, which is evident both in the warm environment he has created at Pizzazz, and the boldness of every pizza he serves, both of which keep us coming back for more. This is exactly the kind of local business that Neighborhood Niche aims to highlight, and we couldn\'t have been happier with the food and the story we found at Pizzazz.',
+    reason: 'Tired of Joe\`s Pizza? Look no further- Pizzazz blows it out of the water. Their unique business model involves fresh Neopolitan-style personal pizzas, made to order from scratch every time. Originally from a small town outside Belgrade, Serbia, Zoran, the owner, believes that great pizza starts with great dough, and let us tell you, the dough is certainly the heart of his pizza. The dough, along with fresh ingredients makes this pizza like no other. We loved the sweet and spicy pizza, which has thinly-sliced salami, ricotta, and Calabrian hot honey that all come together for the perfect bite. But the margarita is also an all-time classic and allows you to taste the delicious foundation for any of their pizzas: their perfect dough, flavorful sauce, and fresh mozzarella. However, the food isn\`t the only thing that makes Pizzazz stand out. Zoran\`s hospitality-first approach drives his business forward, and on Emmett\’s first time there, Zoran made him and his friends instantly feel at home, striking up a conversation and even baking them a fresh dessert on the house. Zoran cares deeply for his customers, which is evident both in the warm environment he has created at Pizzazz, and the boldness of every pizza he serves, both of which keep us coming back for more. This is exactly the kind of local business that Neighborhood Niche aims to highlight, and we couldn/`t have been happier with the food and the story we found at Pizzazz.',
     photos: [
       '/Pizzazz/Pizza1.jpg',
       '/Pizzazz/Pizza2.jpg',
@@ -57,7 +57,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Pizzazz/Pizza6.jpg',
       '/Pizzazz/Pizza7.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/7l44Qd7soMs',
     emoji: '🍕',
     position: { lat: 40.7361089920068, lng: -73.98908279210966 }
   },
@@ -74,7 +74,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Niche/Niche3.jpg',
       '/Niche/Niche4.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/Uu91gdDdObo',
     emoji: '⭐',
     position: { lat: 40.73263188911167, lng: -73.98600731605971 }
   },
@@ -105,7 +105,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Loong/Loong1.JPG',
       '/Loong/Loong2.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/slFI40iLP8g',
     emoji: '🍜',
     position: { lat: 40.72884125940006, lng: -73.98860475688663 }
   },
@@ -138,7 +138,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/MooMooChaa/MooMooChaa3.jpg',
       '/MooMooChaa/MooMooChaa4.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/O1mq_0-WOH4',
     emoji: '🧋',
     position: { lat: 40.73295702872633, lng: -73.98597333616225 }
   },
@@ -157,7 +157,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Jos/Jo5.jpg',
       '/Jos/Jo6.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/NjqGdqypN0Q',
     emoji: '🌮',
     position: { lat: 40.73267516573976, lng: -73.98617097347972 }
   },
@@ -188,7 +188,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/MimiChengs/Mimi2.jpg',
       '/MimiChengs/Mimi3.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/uPkLGUzmwjM',
     emoji: '🥟',
     position: { lat: 40.730755555932994, lng: -73.98634559201483 }
   },
@@ -207,7 +207,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Caffetto/Caffetto5.JPG',
       '/Caffetto/Caffetto6.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/c8sarTbsiAE',
     emoji: '☕',
     position: { lat: 40.73309102953999, lng: -73.98623609719532 }
   },
@@ -241,7 +241,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Pastasole/Pasta4.jpg',
       '/Pastasole/Pasta5.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/5yfRXwhNf1o',
     emoji: '🍝',
     position: { lat: 40.72971127757616, lng: -73.98350881068798 }
   },
@@ -258,7 +258,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Onigiri/Sushi3.jpg',
       '/Onigiri/Sushi4.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/Lh-y-0hbT8Q',
     emoji: '🍙',
     position: { lat: 40.73473836211174, lng: -73.98590831117468 }
   },
