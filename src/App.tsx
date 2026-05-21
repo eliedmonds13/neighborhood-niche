@@ -324,7 +324,7 @@ export default function App() {
                 }}
               >
                 <span style={{
-                  fontSize: '0.55rem', letterSpacing: '0.2em',
+                  fontSize: '0.75rem', letterSpacing: '0.2em',
                   textTransform: 'uppercase', color: T.inkLight,
                 }}>
                   Scroll
