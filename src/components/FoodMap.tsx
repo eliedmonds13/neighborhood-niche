@@ -3,7 +3,6 @@ import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { myFavoriteSpots, FoodSpot } from '../data/spots';
 import friendsLogo from '../assets/FSLogo.png';
 
-// Optional: hook for responsiveness
 function useWindowWidth() {
   const [w, setW] = useState(window.innerWidth);
   useEffect(() => {
@@ -57,8 +56,13 @@ const PANEL_CSS = `
   .panel-slide-in  { animation: panelIn  0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   .panel-slide-out { animation: panelOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
   
-  .panel-up-in     { animation: panelUpIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-  .panel-up-out    { animation: panelUpOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
+  .panel-up-in     { animation: panelUpIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .panel-up-out    { animation: panelUpOut 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
+
+  .scroll-container {
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
 
   .content-out { animation: contentOut 0.13s ease forwards; }
   .content-in  { animation: contentIn  0.18s ease forwards; }
@@ -88,7 +92,6 @@ const PANEL_CSS = `
   .arrow-btn.right { right: 8px; }
 `;
 
-// ── Photo carousel ─────────────────────────────────────────────────────────
 function PhotoCarousel({ photos }: { photos: string[] }) {
   const [idx, setIdx] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
@@ -120,7 +123,6 @@ function PhotoCarousel({ photos }: { photos: string[] }) {
           <button className="arrow-btn left" onClick={() => go(-1)}>‹</button>
           <button className="arrow-btn right" onClick={() => go(1)}>›</button>
 
-          {/* Dot indicators */}
           <div style={{
             position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)',
             display: 'flex', gap: 5,
@@ -170,7 +172,6 @@ function ExpandableText({ text }: { text: string }) {
   );
 }
 
-// ── Side panel ─────────────────────────────────────────────────────────────
 function SpotPanel({
   spot,
   isClosing,
@@ -187,35 +188,47 @@ function SpotPanel({
   const isSchool = spot.id === 'school';
   const contentClass = swapPhase === 'out' ? 'content-out' : swapPhase === 'in' ? 'content-in' : '';
 
-  // Select animation class based on device and state
   const panelAnim = isMobile 
     ? (isClosing ? 'panel-up-out' : 'panel-up-in') 
     : (isClosing ? 'panel-slide-out' : 'panel-slide-in');
 
   return (
-    <div className={panelAnim} style={{
+    <div className={`${panelAnim} scroll-container`} style={{
       position: 'absolute',
-      // Dynamic positioning for desktop vs mobile bottom sheet
       top: isMobile ? 'auto' : 0,
       bottom: 0,
       left: isMobile ? 0 : 'auto',
       right: 0,
       width: isMobile ? '100%' : 340,
-      maxHeight: isMobile ? '55dvh' : '100%',
+      // Bumps height up significantly on mobile so videos/carousels fit comfortably
+      maxHeight: isMobile ? '75dvh' : '100%',
       background: T.cream,
       borderLeft: isMobile ? 'none' : `1px solid ${T.rule}`,
       borderTop: isMobile ? `1px solid ${T.rule}` : 'none',
-      borderTopLeftRadius: isMobile ? '16px' : '0',
-      borderTopRightRadius: isMobile ? '16px' : '0',
-      boxShadow: isMobile ? '0 -4px 20px rgba(0,0,0,0.1)' : 'none',
+      // Sweeter, deeper rounded corners on mobile look like native UI sheets
+      borderTopLeftRadius: isMobile ? '20px' : '0',
+      borderTopRightRadius: isMobile ? '20px' : '0',
+      boxShadow: isMobile ? '0 -8px 32px rgba(0,0,0,0.15)' : 'none',
       display: 'flex',
       flexDirection: 'column',
       zIndex: 10,
       overflowY: 'auto',
     }}>
+      {/* Native-style Grab Handle Accent for mobile sheets */}
+      {isMobile && (
+        <div style={{
+          width: '40px',
+          height: '4px',
+          background: T.rule,
+          borderRadius: '2px',
+          margin: '10px auto 2px',
+          flexShrink: 0
+        }} />
+      )}
+
       {/* Sticky header */}
       <div className={contentClass} style={{
-        padding: '18px 18px 14px',
+        padding: isMobile ? '12px 20px 14px' : '18px 18px 14px',
         borderBottom: `1px solid ${T.rule}`,
         display: 'flex',
         justifyContent: 'space-between',
@@ -229,7 +242,7 @@ function SpotPanel({
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3 style={{
             fontFamily: T.fontDisplay,
-            fontSize: '1.2rem',
+            fontSize: isMobile ? '1.35rem' : '1.2rem', // Slightly scaled up title on mobile
             fontWeight: 400,
             margin: 0,
             lineHeight: 1.2,
@@ -260,7 +273,7 @@ function SpotPanel({
           onClick={onClose}
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
-            fontSize: '1.1rem', color: T.inkLight, padding: '0 0 0 12px',
+            fontSize: '1.2rem', color: T.inkLight, padding: '0 4px 0 12px',
             lineHeight: 1, flexShrink: 0, marginTop: 2,
           }}
           aria-label="Close"
@@ -287,7 +300,7 @@ function SpotPanel({
                 letterSpacing: '0.12em', textTransform: 'uppercase', color: '#aaa',
                 marginBottom: 5,
               }}>Our recommendation</p>
-              <p style={{ fontSize: '0.9rem', fontWeight: 600, color: T.ink, margin: 0 }}>
+              <p style={{ fontSize: '0.95rem', fontWeight: 600, color: T.ink, margin: 0 }}>
                 {spot.recommendation}
               </p>
             </div>
@@ -325,7 +338,7 @@ function SpotPanel({
             {spot.videoUrl && (
               <>
                 <hr style={{ border: 'none', borderTop: `1px solid ${T.rule}`, margin: 0 }} />
-                <div style={{ padding: '16px 18px 20px' }}>
+                <div style={{ padding: '16px 18px 24px' }}>
                   <p style={{
                     fontSize: '0.6rem', fontFamily: T.fontMono, fontWeight: 700,
                     letterSpacing: '0.12em', textTransform: 'uppercase', color: '#aaa',
@@ -351,7 +364,6 @@ function SpotPanel({
   );
 }
 
-// ── FoodMap ────────────────────────────────────────────────────────────────
 interface FoodMapProps {
   openSpotId?: string | null;
 }
@@ -401,7 +413,7 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
       setSwapPhase(null);
       closingRef.current = false;
       setIsClosing(false);
-    }, 300);
+    }, 320); // Matched closely with animation length
   };
 
   return (

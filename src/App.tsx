@@ -246,64 +246,92 @@ export default function App() {
 
           {/* Hero */}
           <section style={{
+            // Computer gets full screen (100dvh), mobile wraps closely around content
             minHeight: sm ? 'auto' : '100dvh',
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center', position: 'relative',
-            padding: `${sm ? '120px' : '100px'} ${px} ${sm ? '120px' : '130px'}`,
+            display: 'flex', 
+            flexDirection: 'column',
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            position: 'relative',
+            // Generous vertical padding on mobile so it feels intentional, but doesn't stretch full screen
+            padding: sm ? '100px 20px 60px' : `100px ${px} 130px`,
             borderBottom: `1px solid ${T.rule}`,
             background: `radial-gradient(ellipse at 50% 55%, rgba(201,71,43,0.07) 0%, transparent 65%)`,
           }}>
             <p className="anim-1" style={{
-              fontSize: '0.7rem', letterSpacing: '0.25em', textTransform: 'uppercase',
-              color: T.inkLight, marginBottom: sm ? 24 : 32, textAlign: 'center',
+              fontSize: sm ? '0.75rem' : '0.7rem', // Slightly larger text on mobile for legibility
+              letterSpacing: '0.25em', 
+              textTransform: 'uppercase',
+              color: T.inkLight, 
+              marginBottom: sm ? 20 : 32, 
+              textAlign: 'center',
             }}>
               Friends Seminary · Union Square · Est. 2026
             </p>
-            <img className="anim-2" src={logo} alt="Neighborhood Niche" style={{ width: sm ? 110 : 180, marginBottom: 28 }} />
+            
+            <img className="anim-2" src={logo} alt="Neighborhood Niche" style={{ 
+              width: sm ? 140 : 180, // Made the logo larger on mobile so it doesn't look tiny
+              marginBottom: 24 
+            }} />
+            
             <h1 className="anim-3" style={{
               fontFamily: T.fontDisplay,
-              fontSize: sm ? 'clamp(2.2rem, 9vw, 2.8rem)' : 'clamp(2.8rem, 5.5vw, 5rem)',
-              fontWeight: 400, textAlign: 'center', lineHeight: 1.1,
-              fontStyle: 'italic', color: T.accent,
+              // Give mobile a solid size boost so it hits hard without needing to stretch the screen
+              fontSize: sm ? '2.6rem' : 'clamp(2.8rem, 5.5vw, 5rem)',
+              fontWeight: 400, 
+              textAlign: 'center', 
+              lineHeight: 1.1,
+              fontStyle: 'italic', 
+              color: T.accent,
+              maxWidth: sm ? '320px' : 'none',
             }}>
               The Neighborhood Niche
             </h1>
+            
             <p className="anim-4" style={{
-              marginTop: 16, fontSize: '0.72rem', letterSpacing: '0.15em',
-              textTransform: 'uppercase', color: T.inkLight, textAlign: 'center',
-              maxWidth: sm ? '90%' : '100%',
+              marginTop: 16, 
+              fontSize: sm ? '0.8rem' : '0.72rem', // Boosted mobile reading size
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase', 
+              color: T.inkLight, 
+              textAlign: 'center',
+              maxWidth: sm ? '280px' : '100%',
+              lineHeight: 1.4,
             }}>
               Independent food. Student prices. Right around the corner of Friends.
             </p>
-            <div className="anim-5" style={{ marginTop: sm ? 32 : 44 }}>
+            
+            <div className="anim-5" style={{ marginTop: sm ? 28 : 44 }}>
               <button className="btn-primary" onClick={() => navigate('map')}>
                 View the Map <span>→</span>
               </button>
             </div>
 
-            {/* Scroll Hint Element */}
-            <div 
-              onClick={scrollToAbout}
-              style={{
-                position: 'absolute',
-                bottom: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '12px',
-                cursor: 'pointer',
-                opacity: scrolled ? 0 : 1,
-                transition: 'opacity 0.4s ease',
-              }}
-            >
-              <span style={{
-                fontSize: '0.55rem', letterSpacing: '0.2em',
-                textTransform: 'uppercase', color: T.inkLight,
-              }}>
-                Scroll
-              </span>
-              <div className="scroll-line" />
-            </div>
+            {/* Only show the floating scroll indicator line on desktop */}
+            {!sm && (
+              <div 
+                onClick={scrollToAbout}
+                style={{
+                  position: 'absolute',
+                  bottom: '32px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '12px',
+                  cursor: 'pointer',
+                  opacity: scrolled ? 0 : 1,
+                  transition: 'opacity 0.4s ease',
+                }}
+              >
+                <span style={{
+                  fontSize: '0.55rem', letterSpacing: '0.2em',
+                  textTransform: 'uppercase', color: T.inkLight,
+                }}>
+                  Scroll
+                </span>
+                <div className="scroll-line" />
+              </div>
+            )}
           </section>
 
           {/* About the Project */}
