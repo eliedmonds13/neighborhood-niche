@@ -119,6 +119,18 @@ const GLOBAL_CSS = `
   }
   .btn-outline:hover { background: ${T.ink}; color: ${T.cream}; gap: 18px; }
 
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(0.4); transform-origin: top; opacity: 0.3; }
+    50%      { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  }
+  
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: ${T.ink};
+    animation: scrollPulse 2s infinite ease-in-out;
+  }
+
   .spot-card {
     transition: box-shadow 0.3s, transform 0.2s;
     cursor: pointer;
@@ -134,6 +146,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [openSpotId, setOpenSpotId] = useState<string | null>(null);
   const homeRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const w = useWindowWidth();
   const sm = w < 640;
   const md = w < 960;
@@ -151,6 +164,10 @@ export default function App() {
     setMenuOpen(false);
     setScrolled(false);
     setOpenSpotId(spotId ?? null);
+  };
+
+  const scrollToAbout = () => {
+    aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const px = sm ? '24px' : md ? '48px' : '80px';
@@ -223,13 +240,13 @@ export default function App() {
 
       {/* ══════════════ HOME PAGE ══════════════ */}
       {page === 'home' && (
-        <div className="anim-page" ref={homeRef} style={{ overflowY: 'auto', height: '100vh' }}>
+        <div className="anim-page" ref={homeRef} style={{ overflowY: 'auto', height: '100vh', scrollBehavior: 'smooth' }}>
 
           {/* Hero */}
           <section style={{
             minHeight: '100vh', display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center', position: 'relative',
-            padding: `100px ${px} 100px`,
+            padding: `100px ${px} 130px`,
             borderBottom: `1px solid ${T.rule}`,
             background: `radial-gradient(ellipse at 50% 55%, rgba(201,71,43,0.07) 0%, transparent 65%)`,
           }}>
@@ -259,10 +276,36 @@ export default function App() {
                 View the Map <span>→</span>
               </button>
             </div>
+
+            {/* Scroll Hint Element */}
+            <div 
+              onClick={scrollToAbout}
+              style={{
+                position: 'absolute',
+                bottom: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '12px',
+                cursor: 'pointer',
+                opacity: scrolled ? 0 : 1,
+                transition: 'opacity 0.4s ease',
+              }}
+            >
+              <span style={{
+                fontSize: '0.8rem',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: T.inkLight,
+              }}>
+                Scroll
+              </span>
+              <div className="scroll-line" />
+            </div>
           </section>
 
           {/* About the Project */}
-          <section style={{
+          <section ref={aboutRef} style={{
             display: 'grid',
             gridTemplateColumns: sm ? '1fr' : '1fr 1fr',
             borderBottom: `1px solid ${T.rule}`,
