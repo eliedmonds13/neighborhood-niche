@@ -59,6 +59,7 @@ const PANEL_CSS = `
   .panel-up-in     { animation: panelUpIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   .panel-up-out    { animation: panelUpOut 0.32s cubic-bezier(0.4, 0, 1, 1) forwards; }
 
+  /* Keeps scroll momentum contained inside the sheet layout */
   .scroll-container {
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
@@ -200,12 +201,10 @@ function SpotPanel({
       left: isMobile ? 0 : 'auto',
       right: 0,
       width: isMobile ? '100%' : 340,
-      // Bumps height up significantly on mobile so videos/carousels fit comfortably
       maxHeight: isMobile ? '75dvh' : '100%',
       background: T.cream,
       borderLeft: isMobile ? 'none' : `1px solid ${T.rule}`,
       borderTop: isMobile ? `1px solid ${T.rule}` : 'none',
-      // Sweeter, deeper rounded corners on mobile look like native UI sheets
       borderTopLeftRadius: isMobile ? '20px' : '0',
       borderTopRightRadius: isMobile ? '20px' : '0',
       boxShadow: isMobile ? '0 -8px 32px rgba(0,0,0,0.15)' : 'none',
@@ -214,7 +213,7 @@ function SpotPanel({
       zIndex: 10,
       overflowY: 'auto',
     }}>
-      {/* Native-style Grab Handle Accent for mobile sheets */}
+      {/* Visual top grab accent bar for phone view */}
       {isMobile && (
         <div style={{
           width: '40px',
@@ -242,7 +241,7 @@ function SpotPanel({
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3 style={{
             fontFamily: T.fontDisplay,
-            fontSize: isMobile ? '1.35rem' : '1.2rem', // Slightly scaled up title on mobile
+            fontSize: isMobile ? '1.35rem' : '1.2rem',
             fontWeight: 400,
             margin: 0,
             lineHeight: 1.2,
@@ -413,7 +412,7 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
       setSwapPhase(null);
       closingRef.current = false;
       setIsClosing(false);
-    }, 320); // Matched closely with animation length
+    }, 320);
   };
 
   return (
