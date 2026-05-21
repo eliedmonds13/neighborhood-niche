@@ -3,6 +3,17 @@ import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { myFavoriteSpots, FoodSpot } from '../data/spots';
 import friendsLogo from '../assets/FSLogo.png';
 
+// Optional: hook for responsiveness
+function useWindowWidth() {
+  const [w, setW] = useState(window.innerWidth);
+  useEffect(() => {
+    const handler = () => setW(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return w;
+}
+
 const MAP_STYLES = [
   { featureType: 'poi', stylers: [{ visibility: 'off' }] },
   { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
@@ -22,8 +33,14 @@ const T = {
 };
 
 const PANEL_CSS = `
+  /* Desktop Animations (Slide left/right) */
   @keyframes panelIn  { from { transform: translateX(100%); } to { transform: translateX(0); } }
   @keyframes panelOut { from { transform: translateX(0); }   to { transform: translateX(100%); } }
+  
+  /* Mobile Animations (Slide up/down from bottom) */
+  @keyframes panelUpIn  { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  @keyframes panelUpOut { from { transform: translateY(0); }   to { transform: translateY(100%); } }
+
   @keyframes contentOut {
     from { opacity: 1; transform: translateY(0); }
     to   { opacity: 0; transform: translateY(8px); }
@@ -36,8 +53,13 @@ const PANEL_CSS = `
     from { opacity: 0; }
     to   { opacity: 1; }
   }
+
   .panel-slide-in  { animation: panelIn  0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   .panel-slide-out { animation: panelOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
+  
+  .panel-up-in     { animation: panelUpIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .panel-up-out    { animation: panelUpOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards; }
+
   .content-out { animation: contentOut 0.13s ease forwards; }
   .content-in  { animation: contentIn  0.18s ease forwards; }
   .photo-fade  { animation: photoFade 0.25s ease forwards; }
@@ -121,7 +143,6 @@ function PhotoCarousel({ photos }: { photos: string[] }) {
   );
 }
 
-
 function ExpandableText({ text }: { text: string }) {
   const [expanded, setExpanded] = useState(false);
   const LIMIT = 320;
@@ -152,25 +173,41 @@ function ExpandableText({ text }: { text: string }) {
 // ── Side panel ─────────────────────────────────────────────────────────────
 function SpotPanel({
   spot,
-  panelAnim,
+  isClosing,
   swapPhase,
   onClose,
+  isMobile
 }: {
   spot: FoodSpot;
-  panelAnim: string;
+  isClosing: boolean;
   swapPhase: 'out' | 'in' | null;
   onClose: () => void;
+  isMobile: boolean;
 }) {
   const isSchool = spot.id === 'school';
   const contentClass = swapPhase === 'out' ? 'content-out' : swapPhase === 'in' ? 'content-in' : '';
 
+  // Select animation class based on device and state
+  const panelAnim = isMobile 
+    ? (isClosing ? 'panel-up-out' : 'panel-up-in') 
+    : (isClosing ? 'panel-slide-out' : 'panel-slide-in');
+
   return (
     <div className={panelAnim} style={{
       position: 'absolute',
-      top: 0, right: 0, bottom: 0,
-      width: 340,
+      // Dynamic positioning for desktop vs mobile bottom sheet
+      top: isMobile ? 'auto' : 0,
+      bottom: 0,
+      left: isMobile ? 0 : 'auto',
+      right: 0,
+      width: isMobile ? '100%' : 340,
+      maxHeight: isMobile ? '55dvh' : '100%',
       background: T.cream,
-      borderLeft: `1px solid ${T.rule}`,
+      borderLeft: isMobile ? 'none' : `1px solid ${T.rule}`,
+      borderTop: isMobile ? `1px solid ${T.rule}` : 'none',
+      borderTopLeftRadius: isMobile ? '16px' : '0',
+      borderTopRightRadius: isMobile ? '16px' : '0',
+      boxShadow: isMobile ? '0 -4px 20px rgba(0,0,0,0.1)' : 'none',
       display: 'flex',
       flexDirection: 'column',
       zIndex: 10,
@@ -321,10 +358,14 @@ interface FoodMapProps {
 
 export const FoodMap = ({ openSpotId }: FoodMapProps) => {
   const [displayedSpot, setDisplayedSpot] = useState<FoodSpot | null>(null);
-  const [panelAnim, setPanelAnim] = useState('panel-slide-in');
+  const [isClosing, setIsClosing] = useState(false);
   const [swapPhase, setSwapPhase] = useState<'out' | 'in' | null>(null);
+  
   const closingRef = useRef(false);
   const pendingSpotRef = useRef<FoodSpot | null>(null);
+
+  const w = useWindowWidth();
+  const isMobile = w < 640;
 
   useEffect(() => {
     if (openSpotId) {
@@ -346,7 +387,7 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
       }, 130);
     } else {
       setDisplayedSpot(spot);
-      setPanelAnim('panel-slide-in');
+      setIsClosing(false);
       setSwapPhase(null);
     }
   };
@@ -354,18 +395,19 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
   const closePanel = () => {
     if (closingRef.current) return;
     closingRef.current = true;
-    setPanelAnim('panel-slide-out');
+    setIsClosing(true);
     setTimeout(() => {
       setDisplayedSpot(null);
       setSwapPhase(null);
       closingRef.current = false;
+      setIsClosing(false);
     }, 300);
   };
 
   return (
     <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <style>{PANEL_CSS}</style>
-      <div style={{ height: '100%', width: '100%', position: 'relative' }}>
+      <div style={{ height: '100%', width: '100%', position: 'relative', overflow: 'hidden' }}>
         <Map
           defaultCenter={{ lat: 40.734055572969844, lng: -73.9850736125582 }}
           defaultZoom={15}
@@ -409,7 +451,9 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
                   }}
                 />
               ) : (
-                <div style={{ fontSize: '2rem', cursor: 'pointer' }}>{spot.emoji}</div>
+                <div style={{ fontSize: '2rem', cursor: 'pointer', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}>
+                  {spot.emoji}
+                </div>
               )}
             </AdvancedMarker>
           ))}
@@ -418,9 +462,10 @@ export const FoodMap = ({ openSpotId }: FoodMapProps) => {
         {displayedSpot && (
           <SpotPanel
             spot={displayedSpot}
-            panelAnim={panelAnim}
+            isClosing={isClosing}
             swapPhase={swapPhase}
             onClose={closePanel}
+            isMobile={isMobile}
           />
         )}
       </div>

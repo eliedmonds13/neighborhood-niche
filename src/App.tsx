@@ -68,7 +68,8 @@ const FEATURED = [
 const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body, #root { height: 100%; }
+  /* Use dvh to prevent mobile browser address bars from cutting off content */
+  html, body, #root { height: 100%; min-height: 100dvh; }
   body { background: ${T.cream}; color: ${T.ink}; font-family: ${T.fontMono}; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   ::selection { background: ${T.ink}; color: ${T.cream}; }
 
@@ -148,8 +149,12 @@ export default function App() {
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const w = useWindowWidth();
+  
+  // Responsive breakpoints
   const sm = w < 640;
   const md = w < 960;
+  const px = sm ? '20px' : md ? '48px' : '80px';
+  const py = sm ? '48px' : '88px';
 
   useEffect(() => {
     const el = homeRef.current;
@@ -170,9 +175,6 @@ export default function App() {
     aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const px = sm ? '24px' : md ? '48px' : '80px';
-  const py = sm ? '56px' : '88px';
-
   return (
     <>
       <style>{GLOBAL_CSS}</style>
@@ -191,7 +193,7 @@ export default function App() {
             src={logo}
             alt="Home"
             onClick={() => navigate('home')}
-            style={{ height: 60, cursor: 'pointer', opacity: 1, transition: 'opacity 0.2s' }}
+            style={{ height: sm ? 48 : 60, cursor: 'pointer', opacity: 1, transition: 'opacity 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.opacity = '0.7')}
             onMouseOut={e => (e.currentTarget.style.opacity = '1')}
           />
@@ -240,26 +242,27 @@ export default function App() {
 
       {/* ══════════════ HOME PAGE ══════════════ */}
       {page === 'home' && (
-        <div className="anim-page" ref={homeRef} style={{ overflowY: 'auto', height: '100vh', scrollBehavior: 'smooth' }}>
+        <div className="anim-page" ref={homeRef} style={{ overflowY: 'auto', height: '100dvh', scrollBehavior: 'smooth' }}>
 
           {/* Hero */}
           <section style={{
-            minHeight: '100vh', display: 'flex', flexDirection: 'column',
+            minHeight: sm ? 'auto' : '100dvh',
+            display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center', position: 'relative',
-            padding: `100px ${px} 130px`,
+            padding: `${sm ? '120px' : '100px'} ${px} ${sm ? '120px' : '130px'}`,
             borderBottom: `1px solid ${T.rule}`,
             background: `radial-gradient(ellipse at 50% 55%, rgba(201,71,43,0.07) 0%, transparent 65%)`,
           }}>
             <p className="anim-1" style={{
               fontSize: '0.7rem', letterSpacing: '0.25em', textTransform: 'uppercase',
-              color: T.inkLight, marginBottom: 32, textAlign: 'center',
+              color: T.inkLight, marginBottom: sm ? 24 : 32, textAlign: 'center',
             }}>
               Friends Seminary · Union Square · Est. 2026
             </p>
             <img className="anim-2" src={logo} alt="Neighborhood Niche" style={{ width: sm ? 110 : 180, marginBottom: 28 }} />
             <h1 className="anim-3" style={{
               fontFamily: T.fontDisplay,
-              fontSize: sm ? 'clamp(1.9rem, 9vw, 2.8rem)' : 'clamp(2.8rem, 5.5vw, 5rem)',
+              fontSize: sm ? 'clamp(2.2rem, 9vw, 2.8rem)' : 'clamp(2.8rem, 5.5vw, 5rem)',
               fontWeight: 400, textAlign: 'center', lineHeight: 1.1,
               fontStyle: 'italic', color: T.accent,
             }}>
@@ -268,10 +271,11 @@ export default function App() {
             <p className="anim-4" style={{
               marginTop: 16, fontSize: '0.72rem', letterSpacing: '0.15em',
               textTransform: 'uppercase', color: T.inkLight, textAlign: 'center',
+              maxWidth: sm ? '90%' : '100%',
             }}>
               Independent food. Student prices. Right around the corner of Friends.
             </p>
-            <div className="anim-5" style={{ marginTop: 44 }}>
+            <div className="anim-5" style={{ marginTop: sm ? 32 : 44 }}>
               <button className="btn-primary" onClick={() => navigate('map')}>
                 View the Map <span>→</span>
               </button>
@@ -293,10 +297,8 @@ export default function App() {
               }}
             >
               <span style={{
-                fontSize: '0.8rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: T.inkLight,
+                fontSize: '0.55rem', letterSpacing: '0.2em',
+                textTransform: 'uppercase', color: T.inkLight,
               }}>
                 Scroll
               </span>
@@ -309,6 +311,7 @@ export default function App() {
             display: 'grid',
             gridTemplateColumns: sm ? '1fr' : '1fr 1fr',
             borderBottom: `1px solid ${T.rule}`,
+            width: '100%', overflow: 'hidden'
           }}>
             <div style={{ padding: `${py} ${px}` }}>
               <p style={{
@@ -317,7 +320,7 @@ export default function App() {
               }}>About the project</p>
               <h2 style={{
                 fontFamily: T.fontDisplay,
-                fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
+                fontSize: sm ? '1.9rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
                 fontWeight: 400, lineHeight: 1.2, marginBottom: 28,
               }}>
                 Eat local, spend local.
@@ -342,9 +345,9 @@ export default function App() {
                   { n: '$15', label: 'Maximum price' },
                   { n: '100%', label: 'Independent businesses' },
                 ].map(({ n, label }) => (
-                  <div key={label} style={{ padding: '22px 0', borderBottom: `1px solid ${T.rule}` }}>
+                  <div key={label} style={{ padding: sm ? '16px 0' : '22px 0', borderBottom: `1px solid ${T.rule}` }}>
                     <div style={{
-                      fontFamily: T.fontDisplay, fontSize: '3.4rem',
+                      fontFamily: T.fontDisplay, fontSize: sm ? '2.8rem' : '3.4rem',
                       fontWeight: 400, color: T.accent, lineHeight: 1,
                     }}>{n}</div>
                     <div style={{
@@ -354,7 +357,7 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <button className="btn-primary" onClick={() => navigate('map')}>
+              <button className="btn-primary" style={{ alignSelf: 'flex-start' }} onClick={() => navigate('map')}>
                 Explore the map <span>→</span>
               </button>
             </div>
@@ -363,8 +366,9 @@ export default function App() {
           {/* Featured Spots */}
           <section style={{ padding: `${py} ${px}`, borderBottom: `1px solid ${T.rule}` }}>
             <div style={{
-              display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
-              marginBottom: 44, flexWrap: 'wrap', gap: 16,
+              display: 'flex', flexDirection: sm ? 'column' : 'row',
+              justifyContent: 'space-between', alignItems: sm ? 'flex-start' : 'flex-end',
+              marginBottom: sm ? 32 : 44, gap: 16,
             }}>
               <div>
                 <p style={{
@@ -373,7 +377,7 @@ export default function App() {
                 }}>Must try</p>
                 <h2 style={{
                   fontFamily: T.fontDisplay,
-                  fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.4rem)',
+                  fontSize: sm ? '1.9rem' : 'clamp(1.8rem, 2.8vw, 2.4rem)',
                   fontWeight: 400,
                 }}>Our Top Three</h2>
               </div>
@@ -385,7 +389,7 @@ export default function App() {
             <div style={{
               display: 'grid',
               gridTemplateColumns: sm ? '1fr' : md ? '1fr 1fr' : '1fr 1fr 1fr',
-              gap: sm ? 16 : 8,
+              gap: sm ? 24 : 8,
             }}>
               {FEATURED.map(spot => (
                 <div
@@ -398,8 +402,8 @@ export default function App() {
                   }}
                 >
                   <div style={{
-                    aspectRatio: '1 / 1', overflow: 'hidden',
-                    background: spot.bg,
+                    aspectRatio: sm ? '16 / 9' : '1 / 1',
+                    overflow: 'hidden', background: spot.bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
                     {spot.img ? (
@@ -417,6 +421,7 @@ export default function App() {
                     <div style={{
                       display: 'flex', justifyContent: 'space-between',
                       alignItems: 'flex-start', marginBottom: 10, gap: 8,
+                      flexDirection: sm ? 'column' : 'row'
                     }}>
                       <h3 style={{
                         fontFamily: T.fontDisplay, fontSize: '1.2rem',
@@ -425,7 +430,7 @@ export default function App() {
                       <span style={{
                         fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase',
                         background: T.ink, color: T.cream,
-                        padding: '3px 8px', whiteSpace: 'nowrap', marginTop: 3, flexShrink: 0,
+                        padding: '3px 8px', whiteSpace: 'nowrap', marginTop: sm ? 0 : 3, flexShrink: 0,
                       }}>{spot.tag}</span>
                     </div>
                     <p style={{ fontSize: '0.79rem', lineHeight: 1.8, color: T.inkLight }}>
@@ -448,29 +453,20 @@ export default function App() {
             display: 'grid',
             gridTemplateColumns: sm ? '1fr' : '1fr 1fr',
             borderBottom: `1px solid ${T.rule}`,
+            width: '100%', overflow: 'hidden'
           }}>
             {/* Left: photo */}
             <div style={{
-              padding: `${py} ${px}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              padding: sm ? `${py} ${px} 0` : `${py} ${px}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <div style={{
-                width: sm ? 260 : 338,
-                height: sm ? 260 : 338,
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: `1px solid ${T.rule}`,
-                background: '#e8e4dc',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
+                width: sm ? 220 : 338, height: sm ? 220 : 338,
+                borderRadius: '50%', overflow: 'hidden', border: `1px solid ${T.rule}`,
+                background: '#e8e4dc', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
               }}>
                 <img
-                  src={aboutPhoto}
-                  alt="Emmett and Eli"
+                  src={aboutPhoto} alt="Emmett and Eli"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>
@@ -479,11 +475,9 @@ export default function App() {
             {/* Right: text */}
             <div style={{
               borderLeft: sm ? 'none' : `1px solid ${T.rule}`,
-              borderTop: sm ? `1px solid ${T.rule}` : 'none',
+              borderTop: sm ? `none` : 'none',
               padding: `${py} ${px}`,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
+              display: 'flex', flexDirection: 'column', justifyContent: 'center',
             }}>
               <p style={{
                 fontSize: '0.8rem', letterSpacing: '0.25em', textTransform: 'uppercase',
@@ -491,7 +485,7 @@ export default function App() {
               }}>About us</p>
               <h2 style={{
                 fontFamily: T.fontDisplay,
-                fontSize: sm ? '1.7rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
+                fontSize: sm ? '1.9rem' : 'clamp(1.8rem, 2.8vw, 2.5rem)',
                 fontWeight: 400, lineHeight: 1.2, marginBottom: 28,
               }}>
                 Emmett & Eli
@@ -501,7 +495,6 @@ export default function App() {
                 <p style={{ marginTop: 14 }}>For Eli, the insiration for the project came when he found a tiny window deli on 14th Street selling $3 empanadas. It quickly became a regular lunch spot and sparked a curiosity about the other overlooked neighborhood spots hidden just blocks from school. For Emmett, the inspiration came from his first visit to Pizzazz, a local pizza shop where the owner welcomed him with an unusual warmth and generosity. He immediately wanted to learn the story behind the business and find others like it.</p>
                 <p style={{ marginTop: 14 }}>We shared our finds with each other and realized how many great spots Friends students were missing out on. We hope this map is useful to every Friends student who comes after us, and that it inspires others to look beyond the chains to the people and places that make the neighborhood special.</p>              
               </div>
-
               <div style={{ marginTop: 32 }}>
                 <button className="btn-primary" onClick={() => navigate('map')}>
                   View the Map <span>→</span>
@@ -513,27 +506,26 @@ export default function App() {
           {/* Footer */}
           <footer style={{
             position: 'relative',
-            padding: sm ? '28px 24px' : '36px 80px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            fontSize: '0.57rem',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: T.inkLight,
-            borderTop: `1px solid ${T.rule}`,
+            padding: sm ? '32px 24px' : '36px 80px',
+            display: 'flex', flexDirection: sm ? 'column' : 'row',
+            justifyContent: sm ? 'center' : 'space-between', alignItems: 'center',
+            gap: sm ? '16px' : '0px',
+            fontSize: '0.57rem', letterSpacing: '0.12em',
+            textTransform: 'uppercase', color: T.inkLight, borderTop: `1px solid ${T.rule}`,
+            textAlign: 'center'
           }}>
             <span>Neighborhood Niche © 2026</span>
             <span style={{
-              position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+              position: sm ? 'static' : 'absolute',
+              left: sm ? 'auto' : '50%',
+              transform: sm ? 'none' : 'translateX(-50%)',
               whiteSpace: 'nowrap',
             }}>
               Emmett Cohen & Eli Edmonds · Friends Seminary
             </span>
             <a
               href="https://github.com/eliedmonds13/neighborhood-niche"
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               style={{
                 color: T.inkLight, textDecoration: 'none',
                 borderBottom: `1px solid ${T.inkLight}`, paddingBottom: 1,
@@ -549,8 +541,8 @@ export default function App() {
       {/* ══════════════ MAP PAGE ══════════════ */}
       {page === 'map' && (
         <div className="anim-page" style={{
-          height: '100vh', display: 'flex', flexDirection: 'column',
-          paddingTop: sm ? 78 : 90,
+          height: '100dvh', display: 'flex', flexDirection: 'column',
+          paddingTop: sm ? 76 : 90,
         }}>
           <div style={{
             padding: sm ? '12px 20px' : '14px 40px',
