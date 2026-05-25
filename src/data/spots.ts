@@ -47,7 +47,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     address: '38 Union Square East',
     priceRange: '$12-16',
     recommendation: 'Sweet & Spicy Pizza',
-    reason: 'Tired of Joe\`s Pizza? Look no further- Pizzazz blows it out of the water. Their unique business model involves fresh Neopolitan-style personal pizzas, made to order from scratch every time. Originally from a small town outside Belgrade, Serbia, Zoran, the owner, believes that great pizza starts with great dough, and let us tell you, the dough is certainly the heart of his pizza. The dough, along with fresh ingredients makes this pizza like no other. We loved the sweet and spicy pizza, which has thinly-sliced salami, ricotta, and Calabrian hot honey that all come together for the perfect bite. But the margarita is also an all-time classic and allows you to taste the delicious foundation for any of their pizzas: their perfect dough, flavorful sauce, and fresh mozzarella. However, the food isn\`t the only thing that makes Pizzazz stand out. Zoran\`s hospitality-first approach drives his business forward, and on Emmett\’s first time there, Zoran made him and his friends instantly feel at home, striking up a conversation and even baking them a fresh dessert on the house. Zoran cares deeply for his customers, which is evident both in the warm environment he has created at Pizzazz, and the boldness of every pizza he serves, both of which keep us coming back for more. This is exactly the kind of local business that Neighborhood Niche aims to highlight, and we couldn/`t have been happier with the food and the story we found at Pizzazz.',
+    reason: 'Tired of Joe\`s Pizza? Look no further- Pizzazz blows it out of the water. Their unique business model involves fresh Neopolitan-style personal pizzas, made to order from scratch every time. Originally from a small town outside Belgrade, Serbia, Zoran, the owner, believes that great pizza starts with great dough, and let us tell you, the dough is certainly the heart of his pizza. The dough, along with fresh ingredients makes this pizza like no other. We loved the sweet and spicy pizza, which has thinly-sliced salami, ricotta, and Calabrian hot honey that all come together for the perfect bite. But the margarita is also an all-time classic and allows you to taste the delicious foundation for any of their pizzas: their perfect dough, flavorful sauce, and fresh mozzarella. However, the food isn\`t the only thing that makes Pizzazz stand out. Zoran\`s hospitality-first approach drives his business forward, and on Emmett\’s first time there, Zoran made him and his friends instantly feel at home, striking up a conversation and even baking them a fresh dessert on the house. Zoran cares deeply for his customers, which is evident both in the warm environment he has created at Pizzazz, and the boldness of every pizza he serves, both of which keep us coming back for more. This is exactly the kind of local business that Neighborhood Niche aims to highlight, and we couldn\`t have been happier with the food and the story we found at Pizzazz.',
     photos: [
       '/Pizzazz/Pizza1.jpg',
       '/Pizzazz/Pizza2.jpg',
@@ -67,7 +67,7 @@ export const myFavoriteSpots: FoodSpot[] = [
     address: '230 E 14th Street',
     priceRange: '$3-10',
     recommendation: 'Beef Empanada',
-    reason: 'The spot that started it all. On a walk down 14th Street to grab a quick dollar slice during lunch, Eli noticed a tiny sign on a window advertising $3 empanadas. He decided to try it out, and was blown away by how good it was. Mini Gourmet Deli quickly became a favorite among our friends, so we gave it the nickname <em>Niche Empanada</em> based on it\'s easy-to-miss storefront, and the name went on to inspire this entire project. The empanada menu is short and sweet: chicken, beef, and beef and cheese. Our favorite is definitely the classic beef which is crispy, flavorful, and surprisingly big given the low price. We recommend topping it with a little hot sauce. Niche Empanada also serves smoothies and açaí bowls that we recommend as well. They say their mission is "making food that feels fresh, simple, and satisfying." Over the past year, we have gotten to know Mulin and Murat, who make a clear effort to create community in the neighborhood. Murat, the owner, says, "we have many regular customers who became close to us over time. Our neighbors from the comedy club next door have been really supportive– they\'re not only customers, they\'re also our friends." Niche Empanada is perfect any time of day for a meal or a quick snack, especially given it\'s proximity to Friends. In our opinion, it should be a staple in any student\'s lunch rotation.',
+    reason: 'The spot that started it all. On a walk down 14th Street to grab a quick dollar slice during lunch, Eli noticed a tiny sign on a window advertising $3 empanadas. He decided to try it out, and was blown away by how good it was. Mini Gourmet Deli quickly became a favorite among our friends, so we gave it the nickname <em>Niche Empanada</em> based on its easy-to-miss storefront, and the name went on to inspire this entire project. The empanada menu is short and sweet: chicken, beef, and beef and cheese. Our favorite is definitely the classic beef, which is crispy, flavorful, and surprisingly big given the low price. We recommend topping it with a little hot sauce. Niche Empanada also serves smoothies and açaí bowls that we recommend as well. They say their mission is "making food that feels fresh, simple, and satisfying." Over the past year, we have gotten to know Mulin and Murat, who make a clear effort to create community in the neighborhood. Murat, the owner, says, "we have many regular customers who became close to us over time. Our neighbors from the comedy club next door have been really supportive– they\'re not only customers, they\'re also our friends." Niche Empanada is perfect any time of day for a meal or a quick snack, especially given its proximity to Friends. In our opinion, it should be a staple in any student\'s lunch rotation.',
     photos: [
       '/Niche/Niche1.jpg',
       '/Niche/Niche2.jpg',
@@ -90,7 +90,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Smashy/Smashy2.jpg',
       '/Smashy/Smashy3.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/RZp7x5DG8wA',
     emoji: '🍔',
     position: { lat: 40.736200584185504, lng: -73.98905820009233 }
   },
@@ -121,7 +121,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Anytime/Anytime2.jpg',
       '/Anytime/Anytime3.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/8fHqg55i3IM',
     emoji: '🍱',
     position: { lat: 40.728635797295325, lng: -73.98806128247728 }
   },
@@ -172,7 +172,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/RainbowFalafel/rainbow.jpg',
       '/RainbowFalafel/rainbow2.JPG',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/c5290zLFLoE',
     emoji: '🥙',
     position: { lat: 40.73726981694557, lng: -73.99088010899419 }
   },
@@ -223,7 +223,7 @@ export const myFavoriteSpots: FoodSpot[] = [
       '/Whits/Whits2.jpg',
       '/Whits/Whits3.jpg',
     ],
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/ldo2QR3MO50',
     emoji: '🌭',
     position: { lat: 40.72876335829786, lng: -73.98830959631654 }
   },
