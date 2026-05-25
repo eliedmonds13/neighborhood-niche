@@ -25,6 +25,7 @@ Navigate the map by dragging with the cursor. Click on a pin drop to learn more 
 - Adobe Express
 - Claude
 - ChatGPT
+- Gemini
 - Google Maps API
 
 **Licensing**
