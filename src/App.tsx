@@ -298,7 +298,7 @@ export default function App() {
               maxWidth: sm ? '280px' : '100%',
               lineHeight: 1.4,
             }}>
-              Independent food. Student prices. Right around the corner of Friends.
+              Independent food. Student prices. Right around the corner from Friends.
             </p>
             
             <div className="anim-5" style={{ marginTop: sm ? 28 : 44 }}>
